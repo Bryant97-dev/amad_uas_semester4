@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "940385595985",
+    "project_id": "dokumenku-flutter",
+    "storage_bucket": "dokumenku-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940385595985:android:5d3aca4ddac80b2cc13e70",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app_dokumenku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940385595985-t50rdvsed550p8v7qak03p22qesn409c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMXtFX43-5q-hpW5Il43q6PSQHPX3jZmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940385595985-t50rdvsed550p8v7qak03p22qesn409c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
