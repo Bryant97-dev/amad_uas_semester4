@@ -11,6 +11,7 @@ class AssignmentCard extends StatefulWidget {
 }
 
 class _AssignmentCardState extends State<AssignmentCard> {
+  CollectionReference assignmentCollection = FirebaseFirestore.instance.collection("assignment");
   @override
   Widget build(BuildContext context) {
     Assignment assignment = widget.assignment;
@@ -154,7 +155,18 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                                 ElevatedButton.icon(
                                                   icon: Icon(CupertinoIcons.pencil),
                                                   label: Text("Edit data"),
-                                                  onPressed: () {},
+                                                  onPressed: () async{
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) => UpdateData(
+                                                                assignId: assignment.assignId,
+                                                                assignName: assignment.assignName,
+                                                                assignCourse: assignment.assignCourse,
+                                                                assignDeadline: assignment.assignDeadline,
+                                                                assignDesc:assignment.assignDesc,
+                                                            )));
+                                                  },
                                                   style: ElevatedButton.styleFrom(
                                                       onPrimary: Colors.white,
                                                       primary: Colors.deepPurple

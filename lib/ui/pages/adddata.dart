@@ -8,7 +8,7 @@ class AddData extends StatefulWidget {
 class _AddDataState extends State<AddData> {
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  final ctrlName = TextEditingController();
+  final ctrlName = TextEditingController(text:"harga");
   final ctrlCourse = TextEditingController();
   final ctrlDeadline = TextEditingController();
   final ctrlDesc = TextEditingController();
@@ -123,7 +123,7 @@ class _AddDataState extends State<AddData> {
                         decoration: InputDecoration(
                           labelText:"Assignment Name",
                           prefixIcon: Icon(Icons.label),
-                          border: OutlineInputBorder(),
+                        //  border: OutlineInputBorder(),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value){
@@ -142,7 +142,7 @@ class _AddDataState extends State<AddData> {
                         decoration: InputDecoration(
                           labelText:"Assignment class",
                           prefixIcon: Icon(Icons.description),
-                          border: OutlineInputBorder(),
+                        //  border: OutlineInputBorder(),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value){
@@ -160,7 +160,7 @@ class _AddDataState extends State<AddData> {
                         decoration: InputDecoration(
                           labelText:"Deadline Assignment",
                           prefixIcon: Icon(Icons.lock_clock),
-                          border: OutlineInputBorder(),
+                         // border: OutlineInputBorder(),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value){
@@ -179,7 +179,7 @@ class _AddDataState extends State<AddData> {
                         decoration: InputDecoration(
                           labelText:"Description Assignment",
                           prefixIcon: Icon(Icons.description),
-                          border: OutlineInputBorder(),
+                          //border: OutlineInputBorder(),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value){
@@ -193,7 +193,7 @@ class _AddDataState extends State<AddData> {
                       SizedBox(height:24),
 
                       imageFile == null ?
-                      Row(
+                      Column(
                         children :[
                           ElevatedButton.icon(
                             onPressed: (){
@@ -212,7 +212,7 @@ class _AddDataState extends State<AddData> {
                         ],
                       )
                       :
-                      Row(
+                      Column(
                         children :[
                           ElevatedButton.icon(
                             onPressed: (){
@@ -221,7 +221,12 @@ class _AddDataState extends State<AddData> {
                             },
                             icon: Icon(Icons.photo_camera),
                             label:Text ("Ulang foto"),
+                            style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.white,
+                                primary: Colors.deepPurple
+                            ),
                           ),
+
                           SizedBox(height:16),
                           Semantics(
                             child : Image.file(File(imageFile.path),

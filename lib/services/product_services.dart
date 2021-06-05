@@ -57,4 +57,24 @@ class ProductServices{
       return hsl;
    }
 
+   static Future<bool> updateproduct(Assignment assignment,PickedFile imgFile, String id) async {
+      bool hsl = true;
+      await Firebase.initializeApp();
+      await assignmentCollection.doc(id).update({
+         'assignId' : assignment.assignId,
+         'assignName' : assignment.assignName,
+         'assignCourse' : assignment.assignCourse,
+         'assignDeadline' : assignment.assignDeadline,
+         'assignDesc' : assignment.assignDesc,
+         'updatedAt' : assignment.updateAt,
+
+      }).then((value) {
+         hsl = true;
+      }).catchError((onError){
+         hsl = false;
+      });
+
+      return hsl;
+   }
+
 }

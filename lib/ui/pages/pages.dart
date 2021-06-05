@@ -21,3 +21,4 @@ part 'listdata.dart';
 part 'myaccount.dart';
 part 'splash.dart';
 part'pinsdata.dart';
+part'updatedata.dart';
