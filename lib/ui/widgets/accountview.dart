@@ -29,6 +29,26 @@ class _AccountViewState extends State<AccountView> {
             children: [
               Image.asset("assets/images/logo.png", height: 300
               ),
+              ElevatedButton.icon(
+                icon: Icon(CupertinoIcons.pencil),
+                label: Text("Edit data"),
+                onPressed: () async{
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UpdateAccount(
+                            id : users.uid,
+                            name: users.name,
+                            phone : users.phone,
+                            email : users.email,
+                          )));
+                },
+                style: ElevatedButton.styleFrom(
+                    onPrimary: Colors.white,
+                    primary: Colors.deepPurple
+                ),
+              ),
+              SizedBox(height:15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

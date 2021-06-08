@@ -90,7 +90,22 @@ class AuthServices{
     return true;
   }
 
+  static Future<bool> updateaccount(Users users,  String id) async {
+    bool hsl = true;
+    await Firebase.initializeApp();
+    await userCollection.doc(id).update({
+      'name' : users.name,
+      'phone' : users.phone,
+      'email' : users.email,
 
+    }).then((value) {
+      hsl = true;
+    }).catchError((onError){
+      hsl = false;
+    });
+
+    return hsl;
+  }
 
 
 }

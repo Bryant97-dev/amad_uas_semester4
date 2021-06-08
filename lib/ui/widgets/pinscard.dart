@@ -163,7 +163,29 @@ class _PinsCardState extends State<PinsCard> {
                       ]
                   ),
                 ),
-                Text("Course : "+pins.pinCourse)
+                Row(
+                  children: [
+                    Flexible(
+                        child:Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: Colors.deepPurple,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            alignment:Alignment.center,
+                            child: Column(
+                              children: [
+                                Text(pins.pinCourse, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),),
+                              ],
+                            )
+                        )
+                    )
+                  ],
+                ),
               ],
             )
         ),
