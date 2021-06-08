@@ -4,6 +4,7 @@ class ProductServices{
   //setup cloud firestore
    static FirebaseAuth auth = FirebaseAuth.instance;
    static CollectionReference assignmentCollection = FirebaseFirestore.instance.collection("assignment");
+   static CollectionReference pinsCollection = FirebaseFirestore.instance.collection("pins");
    static DocumentReference assignmentDocument;
 
    //setup storage
@@ -48,12 +49,21 @@ class ProductServices{
 
    static Future<bool> deleteproduct(String id) async {
       bool hsl = true;
+      bool hsp = true;
       await Firebase.initializeApp();
       await assignmentCollection.doc(id).delete().then((value) {
          hsl = true;
       }).catchError((onError){
          hsl = false;
       });
+
+      if(hsl == true){
+         await pinsCollection.doc(id).delete().then((value) {
+            hsp = true;
+         }).catchError((onError){
+            hsp = false;
+         });
+      }
       return hsl;
    }
 
@@ -73,6 +83,20 @@ class ProductServices{
       }).catchError((onError){
          hsl = false;
       });
+      if(imgFile != null) {
+         ref = FirebaseStorage.instance.ref().child("images").child(id + "jpg");
+         uploadTask = ref.putFile(File(imgFile.path));
+
+         await uploadTask.whenComplete(() =>
+             ref.getDownloadURL().then((value) => imgUrl = value,)
+         );
+
+         await assignmentCollection.doc(id).update(
+             {
+                'assignImage': imgUrl,
+             }
+         );
+      }
 
       return hsl;
    }

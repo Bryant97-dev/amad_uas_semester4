@@ -41,7 +41,7 @@ class _MyAccountState extends State<MyAccount> {
                     doc.data()['updateAt'],
                   );
                 } else {
-                  ActivityServices.showToast("gagal ehe"+FirebaseAuth.instance.currentUser.email, Colors.red);
+                // ActivityServices.showToast("gagal ehe"+FirebaseAuth.instance.currentUser.email, Colors.red);
                   users = null;
                }
                 return AccountView(users:users);
@@ -55,59 +55,11 @@ class _MyAccountState extends State<MyAccount> {
 
   @override
   Widget build(BuildContext context) {
-  // Users users2 = widget.users2;
     return Scaffold(
       appBar: AppBar(
         title: Text("My Account"),
       ),
       body: buildBody(),
-      /*body:Stack(
-        children: [
-          ListView(
-            children: [
-              Text("nama"+ users2.email),
-              //SizedBox(height:24 ),
-              Text("nama"),
-            ],
-          ),
-           Container(
-             alignment: Alignment.bottomCenter,
-          child: ElevatedButton.icon(
-              onPressed: () async{
-                setState(() {
-                  isLoading = true;
-                });
-                await AuthServices.signOut().then((value) {
-                  if(value == true){
-                    setState(() {
-                      isLoading = false;
-                    });
-                    ActivityServices.showToast("Logout Success", Colors.green);
-                    Navigator.pushReplacementNamed(context, Login.routeName);
-                  }else{
-                    setState(() {
-                      isLoading = false;
-                    });
-                    ActivityServices.showToast("Logout Failed", Colors.red);
-                  }
-                });
-                //melanjutkan ketahap berikutnya
-                //replacement name di replace , pushedname ditumpuk ada tombol back
-                //vigator.pushNamed(context, MainMenu.routeName);
-              },
-              icon : Icon(Icons.logout),
-              label: Text("Logout"),
-              style : ElevatedButton.styleFrom(
-                primary : Colors.deepPurple,
-                onPrimary: Colors.white,
-                elevation: 4,
-               // alignment: Alignment.bottomCenter,
-              )
-          ),
-        ),
-        ],
-      ),*/
-
     );
   }
 }

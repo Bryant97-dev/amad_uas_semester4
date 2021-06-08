@@ -86,6 +86,8 @@ class _UpdateDataState extends State<UpdateData> {
                 icon:  Icon(Icons.camera),
                 label: Text("camera"),
                 style: ElevatedButton.styleFrom(
+                    onPrimary: Colors.white,
+                    primary: Colors.deepPurple,
                     elevation: 0
                 ),
               ),
@@ -96,6 +98,8 @@ class _UpdateDataState extends State<UpdateData> {
                 icon:  Icon(Icons.folder_outlined),
                 label: Text("gallery"),
                 style: ElevatedButton.styleFrom(
+                    onPrimary: Colors.white,
+                    primary: Colors.deepPurple,
                     elevation: 0
                 ),
               ),
@@ -129,7 +133,7 @@ class _UpdateDataState extends State<UpdateData> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Data"),
+        title: Text("Update Data"),
       ),
       resizeToAvoidBottomInset: false ,
       body: Container(

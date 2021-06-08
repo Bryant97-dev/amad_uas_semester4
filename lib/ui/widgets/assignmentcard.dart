@@ -6,13 +6,16 @@ class AssignmentCard extends StatefulWidget {
   final Assignment assignment;
   AssignmentCard({this.assignment});
 
+
   @override
   _AssignmentCardState createState() => _AssignmentCardState();
 }
 
 class _AssignmentCardState extends State<AssignmentCard> {
+  bool isLoading = false;
   CollectionReference assignmentCollection = FirebaseFirestore.instance.collection("assignment");
   @override
+
   Widget build(BuildContext context) {
     Assignment assignment = widget.assignment;
     if(assignment == null){
@@ -83,7 +86,13 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                               children: [
                                                 Column(
                                                   children: [
-                                                    Image.network(assignment.assignImage, height: 300,),
+                                                    ClipRRect(
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      child: Image(
+                                                        height: 300,
+                                                        image:NetworkImage(assignment.assignImage),
+                                                      ),
+                                                    ),
                                                     SizedBox(height:24,),
                                                     Row(
                                                       children: [
@@ -135,23 +144,32 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                              mainAxisAlignment: MainAxisAlignment
                                                  .spaceEvenly,
                                               children: [
-                                                /*ElevatedButton.icon(
+                                                ElevatedButton.icon(
                                                   icon: Icon(CupertinoIcons
-                                                      .download_circle_fill),
-                                                  label: Text("Download data"),
+                                                      .pin_fill),
+                                                  label: Text("Pins data"),
                                                   onPressed: ()async {
-                                                   /* bool result = await ProductServices.getproduct(assignment.assignId);
-                                                    if(result){
-                                                      ActivityServices.showToast(assignment.assignName, Colors.green);
-                                                    }else{
-                                                      ActivityServices.showToast("Delete data Succces", Colors.red);
-                                                    }*/
+                                                      setState(() {
+                                                        isLoading = true;
+                                                      });
+                                                      Pins pins = Pins("",assignment.assignName,assignment.assignCourse,
+                                                          assignment.assignDeadline,assignment.assignDesc,assignment.assignImage,"",FirebaseAuth.instance.currentUser.uid,"","");
+                                                      await PinsServices.addPins(pins).then((value){
+                                                        if(value == true){
+                                                          ActivityServices.showToast("pins data succes", Colors.green);
+                                                          setState(() {
+                                                            isLoading = false;
+                                                          });
+                                                        }else{
+                                                          ActivityServices.showToast("pins data failed", Colors.red);
+                                                        }
+                                                      });
                                                   },
                                                   style: ElevatedButton.styleFrom(
                                                       onPrimary: Colors.white,
                                                       primary: Colors.deepPurple
                                                   ),
-                                                ),*/
+                                                ),
                                                 ElevatedButton.icon(
                                                   icon: Icon(CupertinoIcons.pencil),
                                                   label: Text("Edit data"),
@@ -202,7 +220,30 @@ class _AssignmentCardState extends State<AssignmentCard> {
                       ]
                   ),
                 ),
-                Text("Course : "+assignment.assignCourse)
+                Row(
+                  children: [
+                    Flexible(
+                        child:Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: Colors.deepPurple,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                            alignment:Alignment.center,
+                            child: Column(
+                              children: [
+                                Text(assignment.assignCourse, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),),
+                              ],
+                            )
+                        )
+                    )
+                  ],
+                ),
+               // Text("Course : "+assignment.assignCourse, textAlign: TextAlign.center)
               ],
             )
 

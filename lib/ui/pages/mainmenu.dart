@@ -12,7 +12,7 @@ class _MainMenuState extends State<MainMenu> {
     ListData(),
     AddData(),
     MyAccount(),
-    PinsData(),
+    ListPins(),
   ];
 
   void _onItemTapped(int index){
@@ -47,10 +47,10 @@ class _MainMenuState extends State<MainMenu> {
             icon: Icon(Icons.person_outline),
             label: "My account",
           ),
-          /*BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.push_pin),
-            label: "Pins Data",
-          ),*/
+            label: "List Pins",
+          ),
         ],
         currentIndex: _selectedIndex,
           onTap: _onItemTapped,

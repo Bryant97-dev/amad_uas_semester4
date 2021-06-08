@@ -8,7 +8,7 @@ class AddData extends StatefulWidget {
 class _AddDataState extends State<AddData> {
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  final ctrlName = TextEditingController(text:"harga");
+  final ctrlName = TextEditingController();
   final ctrlCourse = TextEditingController();
   final ctrlDeadline = TextEditingController();
   final ctrlDesc = TextEditingController();
@@ -58,6 +58,8 @@ class _AddDataState extends State<AddData> {
               icon:  Icon(Icons.camera),
               label: Text("camera"),
               style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  primary: Colors.deepPurple,
                 elevation: 0
               ),
             ),
@@ -68,6 +70,8 @@ class _AddDataState extends State<AddData> {
               icon:  Icon(Icons.folder_outlined),
               label: Text("gallery"),
               style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  primary: Colors.deepPurple,
                   elevation: 0
               ),
             ),
@@ -141,7 +145,7 @@ class _AddDataState extends State<AddData> {
                         //maxLines: 3,
                         decoration: InputDecoration(
                           labelText:"Assignment class",
-                          prefixIcon: Icon(Icons.description),
+                          prefixIcon: Icon(Icons.class__outlined),
                         //  border: OutlineInputBorder(),
                         ),
                         autovalidateMode: AutovalidateMode.onUserInteraction,

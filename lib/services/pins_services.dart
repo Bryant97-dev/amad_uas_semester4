@@ -3,8 +3,9 @@ part of 'services.dart';
 class PinsServices {
   //setup cloud firestore
   static FirebaseAuth auth = FirebaseAuth.instance;
-  static CollectionReference pinsCollection = FirebaseFirestore.instance
-      .collection("pins");
+  static CollectionReference assignmentCollection = FirebaseFirestore.instance.collection("assignment");
+  static CollectionReference pinsCollection = FirebaseFirestore.instance.collection("pins");
+
   static DocumentReference pinsDocument;
 
   //setup storage
@@ -12,7 +13,7 @@ class PinsServices {
   static UploadTask uploadTask;
   static String imgUrl;
 
-  static Future<bool> addPins(Pins pins, PickedFile imgFile) async {
+  static Future<bool> addPins(Pins pins) async {
     await Firebase.initializeApp();
     pinsDocument = await pinsCollection.add({
       'pinId': pins.pinId,
@@ -27,7 +28,7 @@ class PinsServices {
       'updatedAt': pins.updateAt,
     });
     if (pinsDocument != null) {
-      ref = FirebaseStorage.instance.ref().child("images").child(
+      /*ref = FirebaseStorage.instance.ref().child("images").child(
           pinsDocument.id + "jpg");
       uploadTask = ref.putFile(File(imgFile.path));
 
@@ -40,8 +41,13 @@ class PinsServices {
             'pinsId': pinsDocument.id,
             'pinsImage': imgUrl,
           }
-      );
+      );*/
 
+      pinsCollection.doc(pinsDocument.id).update(
+          {
+            'pinId' : pinsDocument.id,
+          }
+      );
       return true;
     } else {
       return false;
